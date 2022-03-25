@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script   src="https://cdn.tailwindcss.com"> </script>
+    <title>blog</title>
+</head>
+<body class="bg-slate-100">
+    <nav class="flex items-center justify-between flex-wrap bg-black p-6">
+        <div class="flex items-center flex-shrink-0 text-white mr-6">
+          <span class="font-semibold text-xl tracking-tight">Blog</span>
+        </div>
+        <div class="block lg:hidden">
+          <button class="flex items-center px-3 py-2 border rounded text-slate-200 border-slate-400 hover:text-white hover:border-white">
+            
+          </button>
+        </div>
+        <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+          <div class="text-sm lg:flex-grow">
+            <a href="/articles" class="block mt-4 lg:inline-block lg:mt-0 text-slate-200  hover:text-white mr-4">
+              all articles
+            </a>
+            <a href="/articles/new" class="block mt-4 lg:inline-block lg:mt-0 text-slate-200  hover:text-white mr-4">
+                new article
+            </a>
+            <%_ if(req.session.logined == true){ -%>
+                <a href="./users/logout" class = "block mt-4 lg:inline-block lg:mt-0 text-slate-200  hover:text-white mr-4">
+                    logout
+                </a>
+            <%_ }else{ -%>
+                <a href="./users/login" class="block mt-4 lg:inline-block lg:mt-0 text-slate-200  hover:text-white mr-4">
+                    login
+                </a>
+            <%_ } -%>
+
+          </div>
+        </div>
+    </nav>
+    <div class = "container mt-6 mb-4 w-4/6 bg-white shadow-md rounded px-8 pt-6 pb-8 flex-row mx-auto">
+        <h1 class = "text-center text-4xl text-slate-700 font-semibold">new message</h1>
+        <form action="/articles/post_messages" method="POST" class="flex-row mx-auto w-full " >
+            <%- include('_form_fields_messages') %>
+        </form>
+    </div> 
+</body>
+</html>  
